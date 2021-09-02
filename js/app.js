@@ -91,25 +91,38 @@ form.appendChild(botaoCreateDiv);
 
 
 
-// função verificadora de inputs
+// valida se os campos estão preenchidos
 // 
+let inputs= document.querySelectorAll("input")
+
 botaoCreateDiv.addEventListener('click', function(event){
     event.preventDefault();
-    let inputs= document.querySelectorAll("input")
     let result=true;
 
     for(let i=0; i< inputs.length; i++){
-        if(inputs[i].value==""){
+        if(inputs[i].value.length<=1){
             result=false;
+            break;
         }
     }
     if(result){
         createContainer()
+        window.alert("Preencha todos os campos para continuar\nO texto deve conter mais que 1 caractere e menos que 150 caracteres")
     }else{
-        window.alert("Preencha todos os campos para continuar")
     }
 })
 
+// valida a quantidade de caracteres
+// 
+inputs.forEach(input=>{
+    input.addEventListener('keydown',event=>{
+        console.log("digitou")
+
+        if(input.value.length>=150 && event.key!='backspace'){
+            input.blur()
+        }
+    })
+})
 
 
 //   function pra alterar background

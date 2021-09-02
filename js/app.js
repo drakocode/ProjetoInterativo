@@ -25,9 +25,9 @@ form.appendChild(titulo);
 //  
 var tituloInput = document.createElement("input");
 var divTituloInput = document.createElement("div");
+tituloInput.id="titulo-input"
 tituloInput.setAttribute("placeholder", "Título");
 tituloInput.setAttribute("type", "text");
-divTituloInput.setAttribute("id", "titulo-input");
 divTituloInput.appendChild(tituloInput);
 form.appendChild(divTituloInput);
 
@@ -35,9 +35,9 @@ form.appendChild(divTituloInput);
 //  
 var subTituloInput = document.createElement("input");
 var divSubTituloInput = document.createElement("div");
+subTituloInput.id="subTitulo-input"
 subTituloInput.setAttribute("placeholder", "Subtítulo");
 subTituloInput.setAttribute("type", "text");
-divSubTituloInput.setAttribute("id", "subTitulo-input");
 divSubTituloInput.appendChild(subTituloInput);
 form.appendChild(divSubTituloInput);
 
@@ -46,9 +46,9 @@ form.appendChild(divSubTituloInput);
 // 
 var descricaoInput = document.createElement("input");
 var divDescricaoInput = document.createElement("div");
+descricaoInput.id="descricao-input"
 descricaoInput.setAttribute("placeholder", "Descrição");
 descricaoInput.setAttribute("type", "text");
-divDescricaoInput.setAttribute("id", "descricao-input");
 divDescricaoInput.appendChild(descricaoInput);
 form.appendChild(divDescricaoInput);
 
@@ -85,12 +85,30 @@ form.appendChild(botaoEnviar);
 var botaoCreateDiv = document.createElement("button");
 var botaoTextoCreateDiv = document.createTextNode("CreateDiv");
 botaoCreateDiv.setAttribute("id", "creatediv-button");
-// botaoCreateDiv.setAttribute("type", "submit");
 
-botaoCreateDiv.setAttribute("onclick", "createContainer()");
 botaoCreateDiv.appendChild(botaoTextoCreateDiv);
 form.appendChild(botaoCreateDiv);
 
+
+
+// função verificadora de inputs
+// 
+botaoCreateDiv.addEventListener('click', function(event){
+    event.preventDefault();
+    let inputs= document.querySelectorAll("input")
+    let result=true;
+
+    for(let i=0; i< inputs.length; i++){
+        if(inputs[i].value==""){
+            result=false;
+        }
+    }
+    if(result){
+        createContainer()
+    }else{
+        window.alert("Preencha todos os campos para continuar")
+    }
+})
 
 
 
@@ -184,11 +202,9 @@ function createContainer(){
     containerText.appendChild(containerSubTitulo);
     containerText.appendChild(containerDescricao);
 
-    //      inserção de imagem na div
-    // 
+
     let url = document.getElementById("url-input").value;
     document.querySelector('#containerContent').style.backgroundImage=`url('${url}')`
-     
     }else{
         let url = document.getElementById("url-input").value;
         document.querySelector('#containerContent').style.backgroundImage=`url('${url}')`

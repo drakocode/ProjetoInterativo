@@ -184,6 +184,11 @@ function createContainer(){
     containerText.appendChild(containerSubTitulo);
     containerText.appendChild(containerDescricao);
 
+    //      inserção de imagem na div
+    // 
+    let url = document.getElementById("url-input").value;
+    document.querySelector('#containerContent').style.backgroundImage=`url('${url}')`
+     
     }else{
         let url = document.getElementById("url-input").value;
         document.querySelector('#containerContent').style.backgroundImage=`url('${url}')`

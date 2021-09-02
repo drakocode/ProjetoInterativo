@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700&display=swap');
+
+$font-color: #ddd; 
+
+* {
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #02020280;
+    background-image: url('../assets/img/mustang.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+form{
+        border-radius: 8px;
+        background-color: rgba(2, 2, 2, 0.80);
+        padding: 32px;
+        max-width: 80%;
+
+    h1{
+        margin-bottom: 24px;
+        color: $font-color;
+        text-align: center;
+        font-size: 2rem;
+        font-weight: 400;
+        border-bottom: $font-color 1px solid;
+    }
+
+    input{
+        background-color: #020202;
+        height: 48px;
+        border: none;
+        width: 100%;
+        border-radius: 8px;
+        color: $font-color;
+        text-align: center;
+        outline: none;
+        border: #DE5E06 solid 2px;
+        
+        &:focus{
+            border:#DE5E06 solid 3px;
+        }
+        
+        &::placeholder{
+            color: $font-color;
+            text-align: center;
+        }
+    }
+    
+    button{
+        margin-top: 24px;
+        width: 100%;
+        border: none;
+        background-color: rgb(222, 94, 6, .9);
+        color: $font-color;
+        border-radius: 8px;
+        height: 48px;
+        font-size: 16px;
+        font-weight: bold;
+    }
+}

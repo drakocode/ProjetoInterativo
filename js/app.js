@@ -69,10 +69,10 @@ form.appendChild(divUrlInput);
 // 
 
 
-//   botão enviar
+//   botão background
 // 
 var botaoEnviar = document.createElement("button");
-var botaoTextoEnviar = document.createTextNode("Enviar");
+var botaoTextoEnviar = document.createTextNode("Background");
 botaoEnviar.setAttribute("id", "submit-button");
 botaoEnviar.setAttribute("type", "submit");
 

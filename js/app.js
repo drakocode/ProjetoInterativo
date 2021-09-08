@@ -1,3 +1,6 @@
+
+
+
 //   formulario
 //  
 var formulario = document.createElement("form");
@@ -91,6 +94,12 @@ form.appendChild(botaoCreateDiv);
 
 
 
+
+
+// 
+//                  functions & listeners
+// 
+
 // valida se os campos estão preenchidos
 // 
 let inputs= document.querySelectorAll("input")
@@ -99,16 +108,16 @@ botaoCreateDiv.addEventListener('click', function(event){
     event.preventDefault();
     let result=true;
 
-    for(let i=0; i< inputs.length; i++){
-        if(inputs[i].value.length<=1){
+    for(let i=0; i< inputs.length-1; i++){
+        if(inputs[i].value.length<=1 || inputs[i].value.length>=150){
             result=false;
             break;
         }
     }
     if(result){
-        createContainer()
-        window.alert("Preencha todos os campos para continuar\nO texto deve conter mais que 1 caractere e menos que 150 caracteres")
+        createContainer(urlInput.value, tituloInput.value, subTituloInput.value, descricaoInput.value)
     }else{
+        window.alert("Preencha todos os campos para continuar\nO texto deve conter mais que 1 caractere e menos que 150 caracteres")
     }
 })
 
@@ -149,16 +158,40 @@ botaoCreateDiv.addEventListener('click', function(event) {
 
 
 
+
+// 
+//  teste de localstorage
+// 
+
+// let obj=localStorage.getItem(`json`)
+//     obj=JSON.parse(obj)
+// console.log(obj)
+// if(obj.imagem!=null){
+
+//     window.onload=createContainer(obj.imagem, obj.titulo, obj.subTitulo, obj.descricao)
+// }
+
+
+
+
+
+
 // 
 //                        function pro conteudo
 // 
-function createContainer(){
-    if(tituloInput && subTituloInput&&descricaoInput&&urlInput==""){
-        window.location.reload();
-    };
+function createContainer(url, titulo, subTitulo, descricao){
+    // if(tituloInput=="" && subTituloInput=="" && descricaoInput=="" && urlInput==""){
+    //     window.location.reload();
+    // };
+    console.log("create container")
     
 
+
+
     if(document.getElementById("container")==null){
+
+
+
     //      container base
     // 
     var container = document.createElement("div");
@@ -193,9 +226,9 @@ function createContainer(){
 
     //    textos nos tipos de textos
     // 
-    var containerTituloText = document.createTextNode(tituloInput.value);
-    var containerSubTituloText = document.createTextNode(subTituloInput.value);
-    var containerDescricaoText = document.createTextNode(descricaoInput.value);
+    var containerTituloText = document.createTextNode(titulo);
+    var containerSubTituloText = document.createTextNode(subTitulo);
+    var containerDescricaoText = document.createTextNode(descricao);
  
     containerTitulo.setAttribute('id','containerH1')
     containerSubTitulo.setAttribute('id','containerH3')
@@ -216,16 +249,22 @@ function createContainer(){
     containerText.appendChild(containerDescricao);
 
 
-    let url = document.getElementById("url-input").value;
+    
     document.querySelector('#containerContent').style.backgroundImage=`url('${url}')`
+
     }else{
-        let url = document.getElementById("url-input").value;
         document.querySelector('#containerContent').style.backgroundImage=`url('${url}')`
         
         //     textos nos tipos de textos
         // 
-        document.querySelector('#containerH1').innerHTML = tituloInput.value;
-        document.querySelector('#containerH3').innerHTML = subTituloInput.value;
-        document.querySelector('#containerP').innerHTML = descricaoInput.value; 
+        document.querySelector('#containerH1').innerHTML = titulo;
+        document.querySelector('#containerH3').innerHTML = subTitulo;
+        document.querySelector('#containerP').innerHTML = descricao; 
     }
+
+
+    let json=`{"imagem":"${urlInput.value}","titulo":"${tituloInput.value}","subtitulo":"${subTituloInput.value}","descricao":"${descricaoInput.value}"}`
+    localStorage.setItem(`json`, json)
+
 }
+console.log(localStorage)

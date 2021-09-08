@@ -16,13 +16,30 @@ body {
   background-image: url("../assets/img/mustang.jpg");
   background-repeat: no-repeat;
   background-size: cover;
+  flex-direction:row;
+  justify-content:space-between;
+  /* flex-wrap:nowrap; */
+  align-items:flex-start
+}
+
+/* 
+
+  FORMULARIO
+
+*/
+
+.formulario{
+  flex-direction:row;
+  /* justify-content: center; */
+  /* align-items: center; */
 }
 
 form {
-  border-radius: 8px;
+  /* border-radius: 8px; */
   background-color: rgba(2, 2, 2, 0.8);
   padding: 32px;
   max-width: 80%;
+  height: 100%;
 }
 form h1 {
   margin-bottom: 24px;
@@ -63,15 +80,27 @@ form button {
   font-weight: bold;
 }
 
+
+
+/* 
+
+  CONTAINER
+
+*/
+
+
 #container{
   transition: 1.1s;
 
-  border-radius: 8px;
+  /* border-radius: 8px; */
   background-color: rgba(2, 2, 2, 0.8);
   padding: 32px;
-  width: 500px ;
-  height: 500px;
-  /* background-image: 100%; */
+  /* width: 500px ;
+  height: 500px; */
+  width: 70% ;
+  height: 100%;
+
+
 }
 
 #container h1{
@@ -85,6 +114,8 @@ form button {
   margin-bottom: 24px;
   color: #ddd;
   text-align: center;
+
+  align-items:flex-end
 }
 #container h1{
   font-size: 2rem;
@@ -108,10 +139,9 @@ form button {
   left: 0;
   right: 0;
   margin: auto;
-  /* margin-right: auto; */
 
   width: 100%;
-  height: 300px;
+  height: 77%;
 }
 
 

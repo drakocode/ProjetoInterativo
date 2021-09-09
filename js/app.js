@@ -68,7 +68,7 @@ form.appendChild(divUrlInput);
 
 
 // 
-//                              botões
+//                          botões
 // 
 
 
@@ -100,6 +100,9 @@ form.appendChild(botaoCreateDiv);
 //                  functions & listeners
 // 
 
+
+
+
 // valida se os campos estão preenchidos
 // 
 let inputs= document.querySelectorAll("input")
@@ -125,7 +128,6 @@ botaoCreateDiv.addEventListener('click', function(event){
 // 
 inputs.forEach(input=>{
     input.addEventListener('keydown',event=>{
-        console.log("digitou")
 
         if(input.value.length>=150 && event.key!='backspace'){
             input.blur()
@@ -159,17 +161,25 @@ botaoCreateDiv.addEventListener('click', function(event) {
 
 
 
-// 
-//  teste de localstorage
-// 
 
-// let obj=localStorage.getItem(`json`)
-//     obj=JSON.parse(obj)
-// console.log(obj)
-// if(obj.imagem!=null){
+// localstorage
+// 
+if(localStorage=null){
 
-//     window.onload=createContainer(obj.imagem, obj.titulo, obj.subTitulo, obj.descricao)
-// }
+    localStorage.setItem(`json`, JSON.stringify([]))
+}
+
+let listItem=localStorage.getItem(`json`)
+listItem=JSON.parse(listItem)
+
+
+if(listItem!=null){
+    listItem.forEach((element)=>{
+        
+        window.onload=createContainer(element.imagem, element.titulo, element.subTitulo, element.descricao)
+    })
+
+}
 
 
 
@@ -180,17 +190,10 @@ botaoCreateDiv.addEventListener('click', function(event) {
 //                        function pro conteudo
 // 
 function createContainer(url, titulo, subTitulo, descricao){
-    // if(tituloInput=="" && subTituloInput=="" && descricaoInput=="" && urlInput==""){
-    //     window.location.reload();
-    // };
-    console.log("create container")
-    
 
-
-
+    // verifica se existe div e/ou conteudo na div
+    // 
     if(document.getElementById("container")==null){
-
-
 
     //      container base
     // 
@@ -199,6 +202,7 @@ function createContainer(url, titulo, subTitulo, descricao){
     container.setAttribute("id", "container");
     container.setAttribute("action", "");
     document.body.appendChild(container);
+    
     //     container pra imagem
     // 
     var containerContent =document.createElement("div");
@@ -262,9 +266,15 @@ function createContainer(url, titulo, subTitulo, descricao){
         document.querySelector('#containerP').innerHTML = descricao; 
     }
 
+    
+    let list=JSON.parse(localStorage.getItem(`json`))
 
-    let json=`{"imagem":"${urlInput.value}","titulo":"${tituloInput.value}","subtitulo":"${subTituloInput.value}","descricao":"${descricaoInput.value}"}`
-    localStorage.setItem(`json`, json)
+    let item={imagem:urlInput.value,
+            titulo:tituloInput.value,
+            subtitulo:subTituloInput.value,
+            descricao:descricaoInput.value}
+  
+    list.push(item)
 
+    localStorage.setItem("json", JSON.stringify(list))
 }
-console.log(localStorage)
